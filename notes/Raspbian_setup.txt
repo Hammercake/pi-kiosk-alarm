@@ -1,5 +1,8 @@
 !! This is a huge mess of random notes taken while figuring everything out. Need to make a real guide eventually. !!
 
+Notes
+	Would be a great idea to use a backup battery to make sure it still wakes you up at the right time even if there's a power outage. Just have to make sure the app is still functional without internet access.
+
 - Useful commands -
 Alt + F2, type "lxterminal"
 sleep 10 && (command here)
@@ -90,7 +93,9 @@ Use this special command so PHP can call the script and not have to wait for chr
 Change apache to run as pi
 	http://askubuntu.com/questions/391500/run-x11-gui-application-from-browser-apache-php
 Set LXDE-pi to turn off monitor
-	
+Initial pi-kiosk-alarm cloning, replace the /var/www/html folder with it
+	https://github.com/Hammercake/pi-kiosk-alarm.git
+
 - other resources -
 https://www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/
 https://www.raspberrypi.org/forums/viewtopic.php?f=36&t=122444
