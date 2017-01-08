@@ -19,6 +19,10 @@ switch ($action) {
 		alarmOff();
 		break;
 	
+	case 'update_app':
+		updateApp();
+		break;
+	
 	case 'alarm_set_schedule':
 		$start_hour = intval($_GET['start_hour']);
 		$start_minute = intval($_GET['start_minute']);

@@ -1,30 +1,19 @@
 $(function() {
 	
-	$('.btn_alarm_on').click(click_alarm_on);
-	$('.btn_alarm_off').click(click_alarm_off);
+	$('.btn_action').click(click_action);
 	$('.btn_alarm_set_schedule').click(click_alarm_set_schedule);
 	
-	function click_alarm_on(e)
+	function click_action(e)
 	{
-		console.log('h');
+		var action;
 		
 		e.preventDefault();
 		
-		post_action('alarm_on');
-	}
-	
-	function click_alarm_off(e)
-	{
-		e.preventDefault();
+		action = $(this).attr('href');
 		
-		post_action('alarm_off');
-	}
-	
-	function click_alarm_off(e)
-	{
-		e.preventDefault();
+		action = action.substring(1);
 		
-		post_action('alarm_off');
+		post_action(action);
 	}
 	
 	function click_alarm_set_schedule(e)

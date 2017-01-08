@@ -291,10 +291,8 @@ function setSchedule($start_hour = 8, $start_minute = 0, $duration_hour = 1, $du
 }
 
 /**
- * 
- * @param	
- * @param	
- * @return	
+ * Alarm On
+ * Manually starts the alarm
  */
 function alarmOn()
 {
@@ -303,13 +301,21 @@ function alarmOn()
 }
 
 /**
- * 
- * @param	
- * @param	
- * @return	
+ * Alarm Off
+ * Manually shuts the alarm off
  */
 function alarmOff()
 {
 	$cmd = 'sh /home/pi/alarm_off.sh';
+	$o = shell_exec($cmd);
+}
+
+/**
+ * Update App
+ * Fetch and rebase through Git
+ */
+function updateApp()
+{
+	$cmd = 'sh /home/pi/update.sh';
 	$o = shell_exec($cmd);
 }

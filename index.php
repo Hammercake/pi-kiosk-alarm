@@ -17,8 +17,8 @@ $schedule = getSchedule();
 	</head>
 	
 	<body>
-		<p><a href="#" class="button btn_alarm_on">ALARM ON</a></p>
-		<p><a href="#" class="button btn_alarm_off">ALARM OFF</a></p>
+		<p><a href="#alarm_on" class="button btn_action">ALARM ON</a></p>
+		<p><a href="#alarm_off" class="button btn_action">ALARM OFF</a></p>
 		
 		<hr>
 		
@@ -29,6 +29,10 @@ $schedule = getSchedule();
 		<p><input type="number" size="2" class="duration_hour input_hour" value="<?php echo $schedule['duration_hour']; ?>">:<input type="number" size="2" class="duration_minute input_minute" value="<?php echo str_pad($schedule['duration_minute'], 2, '0', STR_PAD_LEFT); ?>"></p>
 		
 		<p><a href="#" class="button btn_alarm_set_schedule">SAVE</a></p>
+		
+		<hr>
+		
+		<p><a href="#update_app" class="button btn_action">UPDATE</a></p>
 		
 		<div id="loading"><img src="/assets/img/loading.gif"></div>
 		

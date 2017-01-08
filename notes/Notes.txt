@@ -1,4 +1,9 @@
 TODO
+	The shell scripts should probably not stay in the web folder?
+		Move them on update to a more secure location.
+		The location should be set in the app's config and used when calling the scripts from PHP.
+		Or simply limit direct access to scripts folder?
+			While doing this, limit access to the whole "notes" folder.
 	Speech will not be a module anymore.
 		Add Speech directly into the system.
 		Modules can add sentences to the speech by using a global function.
