@@ -1,0 +1,20 @@
+.module_news .article {
+	display: none;
+}
+.module_news .article.active {
+	display: block;
+}
+.module_news .article .image {
+	display: block;
+	float: left;
+	margin-right: 2%;
+	width: 40%;
+}
+.module_news .article .title {
+	font-size: 3vw;
+	margin-bottom: 2%;
+}
+.module_news .article .description {
+	font-size: 2vw;
+	text-overflow: ellipsis;
+}

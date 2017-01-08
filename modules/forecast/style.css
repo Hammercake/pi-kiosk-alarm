@@ -1,0 +1,15 @@
+.module_forecast .weather_icon {
+	float: left;
+}
+.module_forecast .temperature {
+	font-size: 5vw;
+	text-align: center;
+}
+.module_forecast .temperature_apparent {
+	font-size: 2vw;
+	text-align: center;
+}
+.module_forecast .precipitation {
+	font-size: 2vw;
+	text-align: center;
+}

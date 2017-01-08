@@ -1,0 +1,23 @@
+<?php
+return array(
+	'date_format' => '[weekday] [day] [month]',
+	'weekday_1' => 'Lundi',
+	'weekday_2' => 'Mardi',
+	'weekday_3' => 'Mercredi',
+	'weekday_4' => 'Jeudi',
+	'weekday_5' => 'Vendredi',
+	'weekday_6' => 'Samedi',
+	'weekday_7' => 'Dimanche',
+	'month_1' => 'Janvier',
+	'month_2' => 'Février',
+	'month_3' => 'Mars',
+	'month_4' => 'Avril',
+	'month_5' => 'Mai',
+	'month_6' => 'Juin',
+	'month_7' => 'Juillet',
+	'month_8' => 'Août',
+	'month_9' => 'Septembre',
+	'month_10' => 'Octobre',
+	'month_11' => 'Novembre',
+	'month_12' => 'Décembre',
+);

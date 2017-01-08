@@ -1,0 +1,1 @@
+Mature audience confirmation button blocks stream from autoplaying

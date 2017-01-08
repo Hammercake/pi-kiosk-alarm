@@ -1,0 +1,57 @@
+html, body {
+	font-family: sans-serif;
+	font-size: 2vw;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+body {
+	background-color: white;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+}
+h2, p {
+	margin: 0;
+}
+
+#wrapper {
+	height: 100%;
+	position: relative;
+	width: 100%
+}
+
+.box,
+.no_box {
+	box-sizing: border-box;
+	overflow: hidden;
+	position: absolute;
+}
+.box {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	padding: 1%;
+}
+.box.white {
+	background-color: rgba(255, 255, 255, 0.7);
+	color: #000;
+}
+.box.blue {
+	background-color: rgba(0, 120, 255, 0.7);
+	color: #000;
+}
+.box.green {
+	background-color: rgba(145, 200, 20, 0.7);
+	color: #000;
+}
+.box.orange {
+	background-color: rgba(255, 120, 20, 0.7);
+	color: #000;
+}
+
+.box_loading {
+	text-align: center;
+	padding-top: 5%;
+}

@@ -1,0 +1,17 @@
+.imgur_entry {
+	display: none;
+}
+
+.imgur_entry.active {
+	display: block;
+}
+
+.imgur_entry h3 {
+	margin: 0 0 5px;
+	text-align: center;
+}
+
+.imgur_entry img {
+	display: block;
+	width: 100%;
+}

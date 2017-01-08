@@ -1,0 +1,10 @@
+.module_datetime .time {
+	font-size: 8vw;
+	line-height: 1;
+	text-align: center;
+}
+
+.module_datetime .date {
+	font-size: 3vw;
+	text-align: center;
+}

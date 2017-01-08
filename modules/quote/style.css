@@ -1,0 +1,12 @@
+.module_quote .quote {
+	font-size: 2vw;
+	margin: 5% 0 0;
+	text-align: center;
+}
+
+.module_quote .author {
+	font-size: 1.5vw;
+	font-style: italic;
+	margin: 2% 5% 0;
+	text-align: right;
+}

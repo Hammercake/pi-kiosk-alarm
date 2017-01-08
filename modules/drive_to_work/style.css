@@ -1,0 +1,7 @@
+.module_calendar .event td {
+	font-size: 2vw;
+	padding-top: 10%;
+}
+.module_calendar .event td.time {
+	width: 20%;
+}

@@ -1,0 +1,106 @@
+!! This is a huge mess of random notes taken while figuring everything out. Need to make a real guide eventually. !!
+
+- Useful commands -
+Alt + F2, type "lxterminal"
+sleep 10 && (command here)
+sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
+crontab -e
+	or -l to list scheduled crons
+
+- Installing + SSH -
+Latest version of Raspbian worked
+Installed
+Connect keyboard, setup network and wpa-supplicant config for wifi
+Restart with delay, replace keyboard with wifi
+Ping to given IP (192.168.0.155), get pinged back!
+SSH works through Cygwin!
+
+- Autologin -
+I installed LightDM for the GUI.
+Changed the config: https://wiki.debian.org/LightDM#Enable_autologin
+Also this resource could be relevant: https://wiki.archlinux.org/index.php/LightDM#Enabling_autologin
+Still doesn't work, now need to read about Xsession maybe?
+Gave up, they all talk about the "lxsession" autostart configuration that I don't have, apparently Jessie Lite has no GUI and lightDM that I installed is just a desktop manager, not a desktop itself.
+Going for full Jessie with Pixel desktop.
+	WORKED. pi config just worked now.
+
+- Control HDMI power -
+Supposed to use libcec (https://github.com/Pulse-Eight/libcec/blob/master/docs/README.raspberrypi.md)
+Followed instructions, fails at step "make -j4" with following errors:
+	src/libcec/CMakeFiles/cec.dir/build.make:77: recipe for target 'src/libcec/CMakeFiles/cec.dir/CECProcessor.cpp.o' failed
+	make[2]: *** [src/libcec/CMakeFiles/cec.dir/CECProcessor.cpp.o] Interrupt
+	src/libcec/CMakeFiles/cec.dir/build.make:100: recipe for target 'src/libcec/CMakeFiles/cec.dir/LibCEC.cpp.o' failed
+	make[2]: *** [src/libcec/CMakeFiles/cec.dir/LibCEC.cpp.o] Interrupt
+	src/libcec/CMakeFiles/cec.dir/build.make:54: recipe for target 'src/libcec/CMakeFiles/cec.dir/CECClient.cpp.o' failed
+	make[2]: *** [src/libcec/CMakeFiles/cec.dir/CECClient.cpp.o] Interrupt
+	src/libcec/CMakeFiles/cec.dir/build.make:123: recipe for target 'src/libcec/CMakeFiles/cec.dir/LibCECC.cpp.o' failed
+	make[2]: *** [src/libcec/CMakeFiles/cec.dir/LibCECC.cpp.o] Interrupt
+	CMakeFiles/Makefile2:227: recipe for target 'src/libcec/CMakeFiles/cec.dir/all' failed
+	make[1]: *** [src/libcec/CMakeFiles/cec.dir/all] Interrupt
+	Makefile:117: recipe for target 'all' failed
+	make: *** [all] Interrupt
+Possibly use a pre-compiled version? https://drgeoffathome.wordpress.com/2015/08/09/a-premade-libcec-deb/
+-OR-
+Simply use tvservice:
+	/opt/vc/bin/tvservice -p # Power on
+	/opt/vc/bin/tvservice -o # Turn off
+	/opt/vc/bin/tvservice -s # Status
+-BETTER YET-
+tvservice kills the windows when shutting down, so bringing it back up shows a blank screen.
+Use this instead:
+vcgencmd display_power 0
+vcgencmd display_power 1
+
+- Disable screen saver -
+https://www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/
+GOT IT. See autostart config
+
+- Autostart config (launch chromium) -
+sudo apt-get install chromium-browser
+	now supported since sept 2016 instead of having to install plenty of crap
+	FINALLY:
+		Jessie creates a user autostart file, so the global file at /etc/xdg/lxsession/LXDE-pi/autostart is not used.
+		Add your changes to "/home/pi/.config/lxsession/LXDE-pi/autostart".
+	@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium-browser/Default/Preferences
+	@chromium-browser --disable-extensions --noerrdialogs --disable-infobars --kiosk --incognito http://localhost
+
+- Setting APACHE (and PHP if necessary) -
+https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md
+Had to fix the install since it d/c me in the middle of it. doing the apt-get again told me what command to run to fix it. Afterwards I re-ran the apt-get and it finally worked.
+For PHP:
+	sudo apt-get install php5 libapache2-mod-php5 -y
+
+- FTP -
+Should work by default with SSH enabled. Use your fav ftp software and connect to the IP using SFTP with the user/pass
+
+- CONTROLLING THE DISPLAY THROUGH SSH -
+ssh -X pi@pi
+export DISPLAY=":0"
+
+- DAEMON SETUP SCRIPTS --
+crontab -e	# edit schedules
+crontab -l	# list stuff
+scripts are currently located at:
+	/home/pi/alarm_on.sh
+	/home/pi/alarm_off.sh
+Use this special command so PHP can call the script and not have to wait for chromium to close
+	[COMMAND HERE] > /dev/null 2>/dev/null &
+
+- STUFF TO DO ON NEW INSTALL -
+Change apache to run as pi
+	http://askubuntu.com/questions/391500/run-x11-gui-application-from-browser-apache-php
+Set LXDE-pi to turn off monitor
+	
+- other resources -
+https://www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/
+https://www.raspberrypi.org/forums/viewtopic.php?f=36&t=122444
+https://www.raspberrypi.org/forums/viewtopic.php?f=41&t=7570
+http://askubuntu.com/questions/422647/how-to-decide-which-drivers-for-ralink-148f7601
+https://github.com/xtknight/mt7610u-linksys-ae6000-wifi-fixes/commits/master
+https://github.com/ulli-kroll/mt7610u
+https://github.com/Myria-de/mt7610u_wifi_sta_v3002_dpo_20130916
+http://askubuntu.com/questions/674116/how-to-install-tp-link-t2uh-wireless-adapter-driver-ralink-mt7610u
+http://superuser.com/questions/738096/how-to-install-mediatek-mt7610u-rt2860-driver
+https://www.raspberrypi.org/downloads/raspbian/
+https://www.raspberrypi.org/documentation/installation/installing-images/windows.md
+http://raspberrypi.stackexchange.com/questions/24934/how-to-connect-to-a-headless-rasberry-pi-a

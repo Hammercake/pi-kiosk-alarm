@@ -1,0 +1,37 @@
+body {
+	font-family: verdana;
+	text-align: center;
+}
+
+.button {
+	background-image: linear-gradient(to bottom, #3498db, #2980b9);
+	color: #FFF;
+	display: inline-block;
+	font-weight: bold;
+	min-width: 120px;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.input_hour,
+.input_minute {
+	padding: 5px;
+	font-size: 2em;
+	width: 50px;
+}
+.input_hour {
+	text-align: right;
+}
+
+#loading {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	display: none;
+	padding: 30px 0;
+	position: absolute;
+		top: 35%;
+		left: 35%;
+	text-align: center;
+	width: 30%;
+}
