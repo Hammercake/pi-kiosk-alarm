@@ -1,6 +1,7 @@
 !! This is a huge mess of random notes taken while figuring everything out. Need to make a real guide eventually. !!
 
 Notes
+	"You can search from here with DuckduckGo" - remove this popup...
 	Would be a great idea to use a backup battery to make sure it still wakes you up at the right time even if there's a power outage. Just have to make sure the app is still functional without internet access.
 
 - Useful commands -
