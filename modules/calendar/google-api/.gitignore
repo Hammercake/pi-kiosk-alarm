@@ -1,3 +1,6 @@
+key.json
+service_key.json
+
 .DS_Store
 phpunit.xml
 composer.lock
