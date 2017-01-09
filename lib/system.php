@@ -284,8 +284,8 @@ function setSchedule($start_hour = 8, $start_minute = 0, $duration_hour = 1, $du
 	}
 	
 	// Add new lines in the crontab with new settings
-	$lines[] = "$start_minute $start_hour * * * sh /home/pi/alarm_on.sh #pialarm";
-	$lines[] = "$end_minute $end_hour * * * sh /home/pi/alarm_off.sh #pialarm";
+	$lines[] = "$start_minute $start_hour * * * sh " . getcwd() . "/sh/alarm_on.sh #pialarm";
+	$lines[] = "$end_minute $end_hour * * * sh " . getcwd() . "/sh/alarm_off.sh #pialarm";
 	
 	shell_exec('(echo "' . implode("\n", $lines) . '") | crontab -');
 }
