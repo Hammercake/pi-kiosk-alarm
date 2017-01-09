@@ -1,15 +1,7 @@
 <?php
 
-class Module_drive_to_work
+class Module_drive_to_work extends Module
 {
-	private $config = array();
-	private $client;
-	
-	function init($config, $module_index)
-	{
-		$this->config = $config;
-	}
-	
 	function render()
 	{
 		$origin = $this->config['origin'];

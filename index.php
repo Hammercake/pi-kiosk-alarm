@@ -2,6 +2,8 @@
 
 require_once('lib/system.php');
 
+$config = getConfig();
+
 $schedule = getSchedule();
 
 ?><!doctype html>
@@ -10,7 +12,7 @@ $schedule = getSchedule();
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<title>Pi</title>
+		<title>Dashboard | Pi Alarm</title>
 		
 		<link rel="stylesheet" href="/assets/css/settings.css">
 		
@@ -40,6 +42,7 @@ $schedule = getSchedule();
 		
 		<hr>
 		
+		<p><a href="settings.php" class="button">SETTINGS</a></p>
 		<p><a href="#update_app" class="button btn_action">UPDATE</a></p>
 		
 		<div id="loading"><img src="/assets/img/loading.gif"></div>

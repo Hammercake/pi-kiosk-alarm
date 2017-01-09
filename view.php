@@ -2,6 +2,7 @@
 
 require_once('lib/system.php');
 
+$config = getConfig();
 $modules = getModulesNames();
 $module_styles = getModulesStyles();
 
@@ -10,7 +11,7 @@ $module_styles = getModulesStyles();
 	<head>
 		<meta charset="utf-8">
 		
-		<title>Pi</title>
+		<title>Pi Alarm</title>
 		
 		<link rel="stylesheet" href="/assets/css/style.css">
 		

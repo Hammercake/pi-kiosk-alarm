@@ -1,8 +1,5 @@
 <?php
-
-
-
-$config = array(
+return array(
 	// Language to use. Loads language files in module according to this var.
 	'lang' => 'en',
 	
@@ -18,7 +15,7 @@ $config = array(
 	use_box - Use the default wrapping box?
 	*/
 	'modules' => array(
-		array(
+		'module_0' => array(
 			'name' => 'random_bg',
 			'active' => true,
 			'pos_l' => '0',
@@ -28,7 +25,7 @@ $config = array(
 			'use_box' => false
 		),
 		
-		array(
+		'module_1' => array(
 			'name' => 'datetime',
 			'active' => true,
 			'pos_l' => '35%',
@@ -38,7 +35,7 @@ $config = array(
 			'use_box' => true
 		),
 		
-		array(
+		'module_2' => array(
 			'name' => 'drive_to_work',
 			'active' => false,
 			'pos_l' => '1%',
@@ -48,7 +45,7 @@ $config = array(
 			'use_box' => true
 		),
 		
-		array(
+		'module_3' => array(
 			'name' => 'calendar',
 			'active' => true,
 			'pos_l' => '1%',
@@ -58,7 +55,7 @@ $config = array(
 			'use_box' => true
 		),
 		
-		array(
+		'module_4' => array(
 			'name' => 'forecast',
 			'active' => true,
 			'pos_l' => '68%',
@@ -68,7 +65,7 @@ $config = array(
 			'use_box' => true,
 		),
 		
-		array(
+		'module_5' => array(
 			'name' => 'news',
 			'active' => true,
 			'pos_l' => '1%',
@@ -78,7 +75,7 @@ $config = array(
 			'use_box' => true
 		),
 		
-		array(
+		'module_6' => array(
 			'name' => 'quote',
 			'active' => true,
 			'pos_l' => '35%',
@@ -88,7 +85,7 @@ $config = array(
 			'use_box' => true
 		),
 		
-		array(
+		'module_7' => array(
 			'name' => 'imgur',
 			'active' => false,
 			'pos_l' => '1%',
@@ -97,7 +94,8 @@ $config = array(
 			'size_h' => '49%',
 			'use_box' => true
 		),
-		array(
+		
+		'module_8' => array(
 			'name' => 'twitch',
 			'active' => false,
 			'pos_l' => '38%',
@@ -106,7 +104,8 @@ $config = array(
 			'size_h' => '30%',
 			'use_box' => false
 		),
-		array(
+		
+		'module_9' => array(
 			'name' => 'speech',
 			'active' => true,
 			'pos_l' => '0',

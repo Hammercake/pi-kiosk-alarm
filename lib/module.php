@@ -2,9 +2,9 @@
 
 abstract class Module
 {
-	protected $module_index;
-	protected $module_name;
-	protected $config;
+	public $module_index;
+	public $module_name;
+	public $config;
 	protected $lang;
 	
 	function init($config, $module_index, $module_name, $lang)

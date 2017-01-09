@@ -1,7 +1,37 @@
 <?php
 
-// Load config
-require_once('config.php');
+$config_cache = null;
+
+/**
+ * Get config
+ * Gets the app config
+ * @return	array
+ */
+function getConfig()
+{
+	global $config_cache;
+	
+	if ($config_cache != null) {
+		return $config_cache;
+	}
+	
+	$config = array();
+	
+	$config_file = getcwd() . '/config.php';
+	
+	if ( file_exists($config_file) ) {
+		$config = include($config_file);
+	}
+	
+	// Overwrite values with user settings
+	$settings = loadSettings('app');
+	
+	$config = array_replace_recursive($config, $settings);
+	
+	$config_cache = $config;
+	
+	return $config;
+}
 
 /**
  * Get modules names
@@ -10,7 +40,7 @@ require_once('config.php');
  */
 function getModulesNames($active_only = true)
 {
-	global $config;
+	$config = getConfig();
 	
 	$modules = array();
 	
@@ -34,7 +64,7 @@ function getModulesNames($active_only = true)
  */
 function getModulesStyles($active_only = true)
 {
-	global $config;
+	$config = getConfig();
 	
 	$css_files = array();
 	
@@ -57,14 +87,13 @@ function getModulesStyles($active_only = true)
 }
 
 /**
- * Render module
- * @param	string	Module name
- * @return	string	HTML content
+ * Init module
+ * @param	string	Module index
+ * @return	object
  */
-function renderModule($module_index)
+function initModule($module_index)
 {
-	global $config;
-	global $module_lang;
+	$config = getConfig();
 	
 	$module_dir = getModuleDir($module_index);
 	
@@ -111,40 +140,11 @@ function renderModule($module_index)
 		}
 	}
 	
-	return _renderModule($module_index, $module_file, $module_dir, $lang);
-}
-
-/**
- * _Render Module
- * Seperate function to contain variable scope
- */
-function _renderModule($module_index, $module_file, $module_dir, $lang)
-{
-	global $config;
-	
 	include($module_file);
 	
+	$module_config = getModuleConfig($module_index);
+	
 	$module_name = $config['modules'][$module_index]['name'];
-	
-	$module_config = array();
-	
-	// Load config file
-	$config_dir = $module_dir . '/config';
-	
-	if ( is_dir($config_dir) ) {
-		if ( isset($config['modules'][$module_index]['config']) ) {
-			$config_file = $config_dir . '/' . $config['modules'][$module_index]['config'] . '.php';
-		}
-		
-		
-		if ( ! isset($config_file) || ! file_exists($config_file) ) {
-			$config_file = $config_dir . '/default.php';
-		}
-		
-		if ( file_exists($config_file) ) {
-			$module_config = include($config_file);
-		}
-	}
 	
 	$module_class = 'Module_' . $module_name;
 	
@@ -152,18 +152,30 @@ function _renderModule($module_index, $module_file, $module_dir, $lang)
 	
 	$module->init($module_config, $module_index, $config['modules'][$module_index]['name'], $lang);
 	
-	$module->render();
+	return $module;
+}
+
+/**
+ * Render module
+ * @param	string	Module index
+ * @return	string	HTML content
+ */
+function renderModule($module_index)
+{
+	$module = initModule($module_index);
+	
+	return $module->render();
 }
 
 /**
  * Get module dir
- * @param	string	Module name
+ * @param	string	Module index
  * @param	bool	Use a web path
  * @return	string
  */
 function getModuleDir($module_index, $web_path = false)
 {
-	global $config;
+	$config = getConfig();
 	
 	$modules_web_dir = '/modules';
 	$modules_dir = __DIR__ . '/../' . $modules_web_dir;
@@ -176,6 +188,34 @@ function getModuleDir($module_index, $web_path = false)
 	}
 	
 	return $dir;
+}
+
+/**
+ * Get module config
+ * @param	string	Module index
+ * @param	bool	Include user settings
+ * @return	array
+ */
+function getModuleConfig($module_index)
+{
+	$config = getConfig();
+	
+	$module_config = array();
+	
+	$module_dir = getModuleDir($module_index);
+	
+	$config_file = $module_dir . '/config.php';
+	
+	if ( file_exists($config_file) ) {
+		$module_config = include($config_file);
+	}
+	
+	// Overwrite values with user settings
+	$settings = loadSettings($module_index);
+	
+	$module_config = array_replace_recursive($module_config, $settings);
+	
+	return $module_config;
 }
 
 /**
@@ -248,7 +288,7 @@ function getSchedule()
 }
 
 /**
- * 
+ * Set Schedule
  * @param	
  * @param	
  * @return	
@@ -318,4 +358,55 @@ function updateApp()
 {
 	$cmd = 'sh ' . getcwd() . '/sh/update_app.sh';
 	$o = shell_exec($cmd);
+}
+
+/**
+ * Save Settings
+ * Saves given settings array in a file
+ * @param	array	Associative array where keys are config index and values are the setting for that config entry
+ * @param	name	Key name to retrieve settings. File will be named using that param
+ */
+function saveSettings($settings, $name)
+{
+	$settings_folder = getcwd() . '/settings';
+	$file_name = $settings_folder . '/' . $name . '.json';
+	
+	$json_data = json_encode($settings);
+	
+	file_put_contents($file_name, $json_data);
+}
+
+/**
+ * Load Settings
+ * Retrieves saved settings
+ * @param	string	Name used when saving settings, also the name of the settings file.
+ * @return	array
+ */
+function loadSettings($name)
+{
+	$settings_folder = getcwd() . '/settings';
+	$file_name = $settings_folder . '/' . $name . '.json';
+	
+	$settings = array();
+	
+	if ( file_exists($file_name) ) {
+		$json_data = file_get_contents($file_name);
+		$settings = json_decode($json_data, true);
+	}
+	
+	return $settings;
+}
+
+/**
+ * Beautify
+ * Makes a string (array index mainly) prettier to read
+ * @param	string	String to make pretty
+ * @return	sdtring
+ */
+function beautify($index)
+{
+	$index = Ucfirst($index);
+	$index = str_replace('_', ' ', $index);
+	
+	return $index;
 }
