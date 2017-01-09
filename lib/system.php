@@ -296,7 +296,7 @@ function setSchedule($start_hour = 8, $start_minute = 0, $duration_hour = 1, $du
  */
 function alarmOn()
 {
-	$cmd = 'DISPLAY=":0" sh ' . getcwd() . '/scripts/alarm_on.sh';
+	$cmd = 'DISPLAY=":0" sh ' . getcwd() . '/sh/alarm_on.sh';
 	$o = shell_exec($cmd);
 }
 
@@ -306,7 +306,7 @@ function alarmOn()
  */
 function alarmOff()
 {
-	$cmd = 'sh ' . getcwd() . '/scripts/alarm_off.sh';
+	$cmd = 'sh ' . getcwd() . '/sh/alarm_off.sh';
 	$o = shell_exec($cmd);
 }
 
@@ -316,6 +316,6 @@ function alarmOff()
  */
 function updateApp()
 {
-	$cmd = 'sh ' . getcwd() . '/scripts/update_app.sh';
+	$cmd = 'sh ' . getcwd() . '/sh/update_app.sh';
 	$o = shell_exec($cmd);
 }
