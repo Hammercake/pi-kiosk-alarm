@@ -14,6 +14,14 @@ $schedule = getSchedule();
 		
 		<link rel="stylesheet" href="/assets/css/settings.css">
 		
+		<link href="/assets/img/app_icons/favicon.png" rel="shortcut icon" />
+		<link href="/assets/img/app_icons/icon-57.png" rel="apple-touch-icon" />
+		<link href="/assets/img/app_icons/icon-76.png" rel="apple-touch-icon" sizes="76x76" />
+		<link href="/assets/img/app_icons/icon-120.png" rel="apple-touch-icon" sizes="120x120" />
+		<link href="/assets/img/app_icons/icon-152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="/assets/img/app_icons/icon-180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="/assets/img/app_icons/icon-192.png" rel="icon" sizes="192x192" />
+		<link href="/assets/img/app_icons/icon-128.png" rel="icon" sizes="128x128" />
 	</head>
 	
 	<body>
