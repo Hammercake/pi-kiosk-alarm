@@ -47,7 +47,7 @@ return array(
 		
 		'module_3' => array(
 			'name' => 'calendar',
-			'active' => true,
+			'active' => false,
 			'pos_l' => '1%',
 			'pos_t' => '1%',
 			'size_w' => '33%',
@@ -114,5 +114,16 @@ return array(
 			'size_h' => '0',
 			'use_box' => false
 		),
+		
+		'module_10' => array(
+			'name' => 'radio',
+			'active' => true,
+			'pos_l' => '1%',
+			'pos_t' => '1%',
+			'size_w' => '33%',
+			'size_h' => '51%',
+			'use_box' => true
+		),
+		
 	)
 );
